@@ -78,6 +78,8 @@ def process_weather_data(data):
     try:
         current = data['current']
         daily = data['daily'][0]
+        minutely = data['minutely'][0]
+        
         weather_data = {
             "temp_current": current['temp'],
             "feels_like": current['feels_like'],
@@ -87,7 +89,7 @@ def process_weather_data(data):
             "icon_code": current['weather'][0]['icon'],
             "temp_max": daily['temp']['max'],
             "temp_min": daily['temp']['min'],
-            "precip_percent": daily['pop'] * 100,
+            "precip_percent": minutely['precipitation'] * 100,
         }
         logging.info("Weather data processed successfully.")
         return weather_data
