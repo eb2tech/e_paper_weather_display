@@ -12,8 +12,7 @@ from dotenv import load_dotenv
 script_dir = os.path.dirname(os.path.abspath(__file__))
 lib_path = os.path.join(script_dir, 'lib')
 sys.path.append(lib_path)
-from waveshare_epd import epd7in3f
-epd = epd7in3f.EPD()
+from waveshare_epd import epd7in3e
 
 # User defined configuration
 load_dotenv()
@@ -22,8 +21,8 @@ LOCATION = os.getenv('LOCATION')  # Name of location
 LATITUDE = os.getenv('LATITUDE')  # Latitude
 LONGITUDE = os.getenv('LONGITUDE')  # Longitude
 UNITS = 'imperial' # imperial or metric
-CSV_OPTION = True # if csv_option == True, a weather data will be appended to 'record.csv'
-TRASH_DAYS = [2]  # 0 = Monday, 6 = Sunday; Multiple days can be passed as a list
+CSV_OPTION = False # if csv_option == True, a weather data will be appended to 'record.csv'
+TRASH_DAYS = [0]  # 0 = Monday, 6 = Sunday; Multiple days can be passed as a list
 
 BASE_URL = f'https://api.openweathermap.org/data/3.0/onecall'
 FONT_DIR = os.path.join(os.path.dirname(__file__), 'font')
@@ -31,7 +30,7 @@ PIC_DIR = os.path.join(os.path.dirname(__file__), 'pic')
 ICON_DIR = os.path.join(PIC_DIR, 'icon')
 
 # Initialize display
-epd = epd7in3f.EPD()
+epd = epd7in3e.EPD()
 epd.init()
 epd.Clear()
 
