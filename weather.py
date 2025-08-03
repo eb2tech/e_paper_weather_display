@@ -6,19 +6,21 @@ from logging.handlers import RotatingFileHandler
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 import requests
+from dotenv import load_dotenv
 
 # Automatically add the 'lib' directory relative to the script's location
 script_dir = os.path.dirname(os.path.abspath(__file__))
 lib_path = os.path.join(script_dir, 'lib')
 sys.path.append(lib_path)
-from waveshare_epd import epd7in5_V2
-epd = epd7in5_V2.EPD()
+from waveshare_epd import epd7in3f
+epd = epd7in3f.EPD()
 
 # User defined configuration
-API_KEY = 'XXXXXXXX'  # Your API key for openweathermap.com
-LOCATION = 'XXXXXXXX'  # Name of location
-LATITUDE = 'XXXXXXXX'  # Latitude
-LONGITUDE = 'XXXXXXXX'  # Longitude
+load_dotenv()
+API_KEY = os.getenv('API_KEY')  # Your API key for openweathermap.com
+LOCATION = os.getenv('LOCATION')  # Name of location
+LATITUDE = os.getenv('LATITUDE')  # Latitude
+LONGITUDE = os.getenv('LONGITUDE')  # Longitude
 UNITS = 'imperial' # imperial or metric
 CSV_OPTION = True # if csv_option == True, a weather data will be appended to 'record.csv'
 TRASH_DAYS = [2]  # 0 = Monday, 6 = Sunday; Multiple days can be passed as a list
@@ -29,7 +31,7 @@ PIC_DIR = os.path.join(os.path.dirname(__file__), 'pic')
 ICON_DIR = os.path.join(PIC_DIR, 'icon')
 
 # Initialize display
-epd = epd7in5_V2.EPD()
+epd = epd7in3f.EPD()
 epd.init()
 epd.Clear()
 
