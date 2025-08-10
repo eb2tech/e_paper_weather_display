@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 script_dir = os.path.dirname(os.path.abspath(__file__))
 lib_path = os.path.join(script_dir, 'lib')
 sys.path.append(lib_path)
-from waveshare_epd import epd7in3e
+from waveshare_epd import epd7in5_V2 as epd7in
 
 # User defined configuration
 load_dotenv()
@@ -30,7 +30,7 @@ PIC_DIR = os.path.join(os.path.dirname(__file__), 'pic')
 ICON_DIR = os.path.join(PIC_DIR, 'icon')
 
 # Initialize display
-epd = epd7in3e.EPD()
+epd = epd7in.EPD()
 epd.init()
 epd.Clear()
 
